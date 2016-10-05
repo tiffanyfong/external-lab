@@ -26,7 +26,22 @@ object CalcInterpreterSpec extends Properties("Interpreter") {
     } 
     
     property("addition") = forAll { (n1: Int, n2: Int) ⇒
-      (Plus(Num(n1), Num(n2))) ~> (n1 + n2)   
-    } 
-    
+      Plus(Num(n1), Num(n2)) ~> (n1 + n2)
+    }
+
+    property("subtraction") = forAll { (n1: Int, n2: Int) =>
+      Minus(Num(n1), Num(n2)) ~> (n1 - n2)
+    }
+
+    property("multiplication") = forAll { (n1: Int, n2: Int) =>
+      Mult(Num(n1), Num(n2)) ~> (n1 * n2)
+    }
+
+    property("division") = forAll { (n1: Int, n2: Int) =>
+      Div(Num(n1), Num(n2)) ~> (n1 / n2)
+    }
+
+    property("parentheses") = forAll { (n: Int) =>
+      Paren(Num(n)) ~> n
+    }
 }
