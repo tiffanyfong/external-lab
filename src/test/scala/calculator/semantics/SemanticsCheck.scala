@@ -7,7 +7,7 @@ import Gen._
 import Arbitrary.arbitrary
 import calculator.ir._
 
-object CalcInterpreterSpec extends Properties("Interpreter") with CalcSugar {
+object CalcInterpreterSpec extends Properties("Interpreter") {
 
     // some syntactic sugar for expressing interpreter tests
     implicit class TreeChecker(input: Expr) {
@@ -26,7 +26,7 @@ object CalcInterpreterSpec extends Properties("Interpreter") with CalcSugar {
     } 
     
     property("addition") = forAll { (n1: Int, n2: Int) ⇒
-      (n1 |+| n2) ~> (n1 + n2)   
+      (Plus(Num(n1), Num(n2))) ~> (n1 + n2)   
     } 
     
 }
